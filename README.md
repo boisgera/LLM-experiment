@@ -109,6 +109,8 @@ You may have waited a little to get the answer, and then it came all at once. Si
 ...        print(answer["response"], end="", flush=True)
 ...    else:
 ...        print()
+...
+Yes, I am listening. How may I assist you today?
 ```
 
 This is a similar experience, except that fragments of the answer are printed as soon as they are available, which is a more enjoyable experience.
