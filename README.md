@@ -97,6 +97,24 @@ Execept for the last item, characterized by `"done":true`, all the other items h
 Yes, I am listening. How may I assist you today?
 ```
 
+You may have waited a little to get the answer, and then it came all at once. Since this is not the most pleasant experience, we can actually ask for the answer in chunks. To do this, we need to 
+
+```pycon
+>>> json_data = {"model": "mistral", "prompt": "Are you listening?"}
+>>> response = requests.post(url, data, stream=True)
+>>> for response_line in response.iter_lines():
+...    json_line = response_line.decode("utf-8")
+...    answer = json.loads(json_line)
+...    if not answer["done"]:
+...        print(answer["response"], end="", flush=True)
+...    else:
+...        print()
+```
+
+This is a similar experience, except that fragments of the answer are printed as soon as they are available, which is a more enjoyable experience.
+
+With a bit of work, we can wrap this code into a program `generate.py` that takes a prompt as a command-line argument and prints the answer:
+
 ```console
 $ python generate.py "Are you listening?"
 Yes, I am listening. How may I assist you today?
