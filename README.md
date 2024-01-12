@@ -115,7 +115,8 @@ Yes, I am listening. How may I assist you today?
 
 This is a similar experience, except that fragments of the answer are printed as soon as they are available, which is a more enjoyable experience.
 
-With a bit of work, we can wrap this code into a program `generate.py` that takes a prompt as a command-line argument and prints the answer:
+With a bit of work, we can wrap this code into a program 
+[`generate.py`](https://github.com/boisgera/LLM-experiment/blob/master/generate.py) that takes a prompt as a command-line argument and prints the answer:
 
 ```console
 $ python generate.py "Are you listening?"
