@@ -21,11 +21,12 @@ you with anything you need.
 >>> Send a message (/? for help)
 ```
 
-> [!WARNING Have patience and all will be revealed]
-> The first time you run the `ollama run mistral` command, don't be suprised
-> if it takes a few minutes to start up. This is because the ollama instance
-> is downloading the Mistral 7B model which represent a few GB of data.
-> The subsequent run will be much faster.
+> [!WARNING]
+> The first time you run the `ollama run mistral` command, 
+> don't be suprised if it takes a few minutes to start up. 
+> This is because the ollama instance
+> is downloading the Mistral 7B model, a few GB of data.
+> The subsequent runs will be much faster.
 
 ## Web (HTTP) Interface
 
