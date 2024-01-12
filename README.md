@@ -6,7 +6,7 @@
 
 If you work with MacOS or Linux, download and install [Ollama](https://ollama.ai/). Otherwise, get the URL of a running ollama instance from your instructor and skip to the next section.
 
-Then test [Mistral-7B LLM] with `ollama run mistral`:
+Then test [Mistral-7B LLM](https://ollama.ai/library/mistral) with `ollama run mistral`:
 
 ```
 $ ollama run mistral
@@ -21,7 +21,7 @@ you with anything you need.
 >>> Send a message (/? for help)
 ```
 
-> [!WARNING] Have patience and all will be revealed
+> [!WARNING Have patience and all will be revealed]
 > The first time you run the `ollama run mistral` command, don't be suprised
 > if it takes a few minutes to start up. This is because the ollama instance
 > is downloading the Mistral 7B model which represent a few GB of data.
