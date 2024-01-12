@@ -17,7 +17,6 @@ def answer(prompt):
     if response.status_code == 200:
         assistant_message = ""
         for response_line in response.iter_lines():
-            print("*", response_line, flush=True)
             json_line = response_line.decode("utf-8")
             answer = json.loads(json_line)
             if not answer["done"]:
@@ -33,6 +32,5 @@ def answer(prompt):
 
 while True:
     prompt = input("> ")
-    print(repr(prompt))
     answer(prompt)
     
