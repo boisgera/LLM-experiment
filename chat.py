@@ -5,7 +5,7 @@ import sys
 # Third-Party
 import requests
 
-SERVER = "http://localhost:11434"
+SERVER = "https://tahr-legal-grackle.ngrok-free.app"
 url = f"{SERVER}/api/chat"
 
 messages = []

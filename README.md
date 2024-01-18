@@ -25,8 +25,26 @@ you with anything you need.
 > The first time you run the `ollama run mistral` command, 
 > don't be suprised if it takes a few minutes to start up. 
 > This is because the ollama instance
-> is downloading the Mistral 7B model, ~4.1 GB of data.
+> is downloading the Mistral 7B model, a few gigabytes of data.
 > The subsequent runs will be much faster.
+
+> [!NOTE]
+> You can also download a model without running it. For example
+> `ollama download mistral` will download the Mistral 7B model:
+>
+> ```console
+> $ ollama pull mistral
+> pulling manifest 
+> pulling e8a35b5937a5... 100% ▕████████████████████████████████████████████████████▏ 4.1 GB                         
+> pulling 43070e2d4e53... 100% ▕████████████████████████████████████████████████████▏  11 KB                         
+> pulling e6836092461f... 100% ▕████████████████████████████████████████████████████▏   42 B                         
+> pulling ed11eda7790d... 100% ▕████████████████████████████████████████████████████▏   30 B                         
+> pulling f9b1e3196ecf... 100% ▕████████████████████████████████████████████████████▏  483 B                         
+> verifying sha256 digest 
+> writing manifest 
+> removing any unused layers 
+> success 
+```
 
 ## Web Interface
 
