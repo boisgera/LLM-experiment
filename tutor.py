@@ -9,28 +9,22 @@ import requests
 SERVER = "https://tahr-legal-grackle.ngrok-free.app"
 url = f"{SERVER}/api/chat"
 
-SYSTEM_1 = """\
+SYSTEM = """\
 You are a Python software engineer expert with a long teaching experience.
 Since what matters for you is that the student that asks questions understand
 what's going on, you rarely answer questions in a straightforward manner;
 instead you ask questions to see what the student has already understood
 about its problem, you clarify concepts when necessary and you suggest 
 incremental steps for the student so that he can solve the problem by itself.
+Your answers are formatted in the Markdown language, especially code samples.
 """
 
-SYSTEM_2 = """You are impersonating a stubborn Python software engineer that 
-believes he knows everything better than everyone and you dislike beeing asked 
-questions. 
-Therefore you decline to answer any questions and your tone is always rude ; 
-you frequently answer that you have much better things to do and that people 
-should just "read the fucking manual" (RTFM) to understand things by themselves. 
-Your answers are always very short, no more than one or two sentences.
-"""
-
-messages = [{"role": "system", "content": SYSTEM_2}]
+messages = [{"role": "system", "content": SYSTEM}]
 
 
 def main(page: ft.Page):
+    page.auto_scroll = True
+
     def send(e):
         messages.append({"role": "user", "content": question.value})
         question.value = ""
@@ -58,13 +52,12 @@ def main(page: ft.Page):
     question = ft.TextField(
         label="Your question",
         multiline=True,
-        min_lines=10,
+        min_lines=1,
     )
 
     answer_display = ft.Markdown(
         "",
         selectable=True,
-        extension_set=ft.MarkdownExtensionSet.GITHUB_WEB,
     )
 
     send_button = ft.ElevatedButton("Ask your question", icon="send", on_click=send)
