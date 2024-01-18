@@ -207,7 +207,7 @@ There is a third role, `"system"`, that you can use to influence dratiscally
 the conversation by giving specific instructions to the model. For example,
 start you list of messages with:
 
-```json
+```python
 messages = [
     {
         "role": "system",
