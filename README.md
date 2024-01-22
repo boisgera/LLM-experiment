@@ -1,4 +1,4 @@
-# The LLaMa Experiment
+# Ollama All The Way Down
 
 ## Ollama
 
