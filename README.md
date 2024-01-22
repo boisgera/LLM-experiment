@@ -58,15 +58,15 @@ SERVER = "http://localhost:11434"
 Otherwise, you will need to access the ollama instance running on my latop,
 exposed publicly through a tunnel created with [ngrok](https://ngrok.com/):
 
-````python
+```python
 SERVER="https://tahr-legal-grackle.ngrok-free.app"
-``
+```
 
 We define `url` as the endpoint for the method `generate`:
 
 ```pycon
 >>> url = f"{SERVER}/api/generate"
-````
+```
 
 This Web API expects you to post a JSON object with two keys: `model` and `prompt`. Since we are using the Mistral-7B model, the value of `model` is `"mistral"`. The value of `prompt` is the text that you want to use to start the conversation. For example:
 
