@@ -55,8 +55,13 @@ listening on port 11434.
 SERVER = "http://localhost:11434"
 ```
 
-Otherwise, you will need to access the ollama instance running on my latop,
-exposed publicly through a tunnel created with [ngrok](https://ngrok.com/):
+Otherwise, you will need to access the ollama instance running on my latop, that I will expose publicly through a tunnel created with [ngrok](https://ngrok.com/):
+
+```
+ngrok http http://localhost:11434 --domain=tahr-legal-grackle.ngrok-free.app
+```
+
+Anyway, as far as you are concerned, use
 
 ```python
 SERVER="https://tahr-legal-grackle.ngrok-free.app"
