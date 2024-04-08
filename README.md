@@ -77,7 +77,7 @@ This Web API expects you to post a JSON object with two keys: `model` and `promp
 
 ```pycon
 >>> json_data = {"model": "mistral", "prompt": "Are you listening?"}
->>> response = requests.post(url, data)
+>>> response = requests.post(url, json=json_data)
 >>> response
 <Response [200]>
 >>> response.content
