@@ -244,7 +244,7 @@ elaborating such instructions is a dark art known as [prompt engineering].
 You can use prompt engineering to create an application with a very specific
 role: a language translator, an english tutor ... or a Python tutor!
 
-## Python Library
+## Ollama Python Library
 
 Now that you know how HTTP requests work, you can use the Ollama Python library 
 instead to talk to the Ollama models. This library has a higher-level interface 
