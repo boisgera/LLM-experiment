@@ -59,8 +59,8 @@ Great to hear that! Is there anything specific you would like me to help with or
 
 Let `OLLAMA` be the URL of your Ollama server:
 
-```python
-OLLAMA = "http://localhost:11434"
+```pycon
+>>> OLLAMA = "http://localhost:11434"
 ```
 
 To check that the Ollama server is running, 
@@ -69,8 +69,6 @@ you don't actually need a web browser; you can actually use the Python `requests
 ```python
 >>> import requests
 >>> response = requests.get(OLLAMA)
->>> print(response)
-<Response [200]>
 >>> print(response.text)
 Ollama is running
 ```
@@ -245,6 +243,26 @@ elaborating such instructions is a dark art known as [prompt engineering].
 
 You can use prompt engineering to create an application with a very specific
 role: a language translator, an english tutor ... or a Python tutor!
+
+## Python API
+
+You can use the Python API to interact with the Ollama server. 
+The `ollama` package provides a `Client` class that you can use to interact 
+with the server. For example:
+
+```python
+>>> import ollama
+>>> OLLAMA = "http://localhost:11434"
+>>> client = ollama.Client(OLLAMA)
+>>> response = generate("mistral", "Are you listening?")
+>>> response
+{'model': 'mistral', 'created_at': '2024-04-09T13:13:03.235957001Z', 'response': " Yes, I am designed to listen and respond. How may I assist you today?\n\nHere's a little joke for you: Why don't scientists trust atoms? Because they make up everything! Is that funny? Let me know if you have any other questions or topics you'd like to discuss. 😊", 'done': True, 'context': [733, 16289, 28793, 28705, 4867, 368, 9857, 28804, 733, 28748, 16289, 28793, 5592, 28725, 315, 837, 5682, 298, 7105, 304, 9421, 28723, 1602, 993, 315, 6031, 368, 3154, 28804, 13, 13, 15423, 28742, 28713, 264, 1628, 13015, 354, 368, 28747, 4315, 949, 28742, 28707, 15067, 4893, 24221, 28804, 5518, 590, 1038, 582, 2905, 28808, 1691, 369, 10032, 28804, 3169, 528, 873, 513, 368, 506, 707, 799, 4224, 442, 13817, 368, 28742, 28715, 737, 298, 3342, 28723, 28705, 30464], 'total_duration': 6448111445, 'load_duration': 2767842, 'prompt_eval_duration': 127905000, 'eval_count': 67, 'eval_duration': 6316439000}
+>>> print(response["response"])
+ Yes, I am designed to listen and respond. How may I assist you today?
+
+Here's a little joke for you: Why don't scientists trust atoms? Because they make up everything! Is that funny? Let me know if you have any other questions or topics you'd like to discuss. 😊
+```
+
 
 ## Python Tutor
 
