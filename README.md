@@ -4,9 +4,19 @@
 
 ![oolama landing page](images/ollama.jpg)
 
-If you work with MacOS or Linux, download and install [Ollama](https://ollama.ai/). Otherwise, skip to the next section.
+To begin with, download and install [Ollama](https://ollama.ai/). 
 
-Then test [Mistral-7B LLM](https://ollama.ai/library/mistral) with `ollama run mistral`:
+Congratulations, you now have a local web server listening on port 11434! Open a browser and go to [http://localhost:11434](http://localhost:11434); you should see the text "Ollama is running". Every interaction that you will have with the LLM model from now on will be go through this web server.
+
+> [!TIP] If for any reason this doesn't work for you but a friend managed to perform the installation on their computer, you may ask them
+to expose their local server to the internet using a service like [ngrok](https://ngrok.com/). They will have to run the following command on their computer:
+> ```console
+> $ ngrok http 11434
+> ```
+> and will give you a URL (such as `https://7130-2a02-842a-220-6301-e9f2-71fd-6231-9ebe.ngrok-free.app`) that you will use instead of `http://localhost:11434`.
+
+
+To chat [Mistral-7B LLM](https://ollama.ai/library/mistral), simply type `ollama run mistral` in your terminal:
 
 ```
 $ ollama run mistral
@@ -14,9 +24,7 @@ $ ollama run mistral
 Hello! I'm here. What can I assist you with today?
 
 >>> Ah, nothing, everything's fine mate :)
-Great to hear that! Is there anything specific you would like me to help
-with or any general questions you have on your mind? I'm here to assist
-you with anything you need.
+Great to hear that! Is there anything specific you would like me to help with or any general questions you have on your mind? I'm here to assist you with anything you need.
 
 >>> Send a message (/? for help)
 ```
@@ -24,7 +32,7 @@ you with anything you need.
 > [!WARNING]
 > The first time you run the `ollama run mistral` command,
 > don't be suprised if it takes a few minutes to start up.
-> This is because the ollama instance
+> This is because the Ollama
 > is downloading the Mistral 7B model, a few gigabytes of data.
 > The subsequent runs will be much faster.
 
@@ -46,38 +54,40 @@ you with anything you need.
 > success
 > ```
 
-## Generate Answers
 
-If you have a local ollama instance running, there is a web server
-listening on port 11434.
 
-```python
-SERVER = "http://localhost:11434"
-```
 
-Otherwise, you will need to access the ollama instance running on my latop, that I will expose publicly through a tunnel created with [ngrok](https://ngrok.com/):
+## Talk to Ollama with Python
 
-```
-ngrok http http://localhost:11434 --domain=tahr-legal-grackle.ngrok-free.app
-```
-
-Anyway, as far as you are concerned, use
+Let `OLLAMA` be the URL of your Ollama server:
 
 ```python
-SERVER="https://tahr-legal-grackle.ngrok-free.app"
+OLLAMA = "http://localhost:11434"
 ```
 
-We define `url` as the endpoint for the method `generate`:
+To check that the Ollama server is running, 
+you don't actually need a web browser; you can actually use the Python `requests` library to get the same result:
+
+```python
+>>> import requests
+>>> response = requests.get(OLLAMA)
+>>> print(response)
+<Response [200]>
+>>> print(response.text)
+Ollama is running
+```
+
+Now, to actually start using the Mistral-7B model, you can use the `generate` method exposed by the server. First, define `URL` as
 
 ```pycon
->>> url = f"{SERVER}/api/generate"
+>>> URL = f"{OLLAMA}/api/generate"
 ```
 
 This Web API expects you to post a JSON object with two keys: `model` and `prompt`. Since we are using the Mistral-7B model, the value of `model` is `"mistral"`. The value of `prompt` is the text that you want to use to start the conversation. For example:
 
 ```pycon
->>> json_data = {"model": "mistral", "prompt": "Are you listening?"}
->>> response = requests.post(url, json=json_data)
+>>> data = {"model": "mistral", "prompt": "Are you listening?"}
+>>> response = requests.post(URL, json=data)
 >>> response
 <Response [200]>
 >>> response.content
@@ -129,7 +139,7 @@ You may have waited a little to get the answer, and then it came all at once. Si
 
 ```pycon
 >>> json_data = {"model": "mistral", "prompt": "Are you listening?"}
->>> response = requests.post(url, data, stream=True)
+>>> response = requests.post(URL, data, stream=True)
 >>> for response_line in response.iter_lines():
 ...    json_line = response_line.decode("utf-8")
 ...    answer = json.loads(json_line)
