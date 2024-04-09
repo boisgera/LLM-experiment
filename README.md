@@ -244,10 +244,18 @@ elaborating such instructions is a dark art known as [prompt engineering].
 You can use prompt engineering to create an application with a very specific
 role: a language translator, an english tutor ... or a Python tutor!
 
-## Python API
+## Python Library
 
-You can use the Ollama Python API to interact with the Ollama server. 
+Now that you know how HTTP requests work, you can use the Ollama Python library 
+instead to talk to the Ollama models. This library has a higher-level interface 
+and performs these HTTP requests under the hood. 
 First install it with:
+
+```bash
+
+You can use the Ollama Python library to interact with the Ollama server
+and bypass the explicit HTTP requests. 
+First install this Pypi library with:
 
 ```bash
 $ pip install ollama
@@ -261,10 +269,15 @@ The Python API closely match the [HTTP REST API] that we have been using so far.
 The `ollama` package provides a `Client` class that you can use to interact 
 with the server. Configure it 
 
-```python
+```pycon
 >>> import ollama
 >>> OLLAMA = "http://localhost:11434"
 >>> client = ollama.Client(OLLAMA)
+```
+
+then use it
+
+```pycon
 >>> response = client.generate(model="mistral", prompt="Are you listening?", stream=True)
 >>> for item in response:
 ...     print(item)
