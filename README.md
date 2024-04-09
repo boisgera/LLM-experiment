@@ -8,12 +8,8 @@ To begin with, download and install [Ollama](https://ollama.ai/).
 
 Congratulations, you now have a local web server listening on port 11434! Open a browser and go to [http://localhost:11434](http://localhost:11434); you should see the text "Ollama is running". Every interaction that you will have with the LLM model from now on will be go through this web server.
 
-> [!TIP] Try tip
-
-> [!WARNING] Try warning
-
-
-> [!TIP] If for any reason this doesn't work for you but a friend managed to 
+> [!TIP] 
+> If for any reason this doesn't work for you but a friend managed to 
 > perform the installation on their computer, you may ask them to expose 
 > their local server to the internet using a service like 
 > [ngrok](https://ngrok.com/). 
