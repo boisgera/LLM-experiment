@@ -246,23 +246,109 @@ role: a language translator, an english tutor ... or a Python tutor!
 
 ## Python API
 
-You can use the Python API to interact with the Ollama server. 
+You can use the Ollama Python API to interact with the Ollama server. 
+First install it with:
+
+```bash
+$ pip install ollama
+```
+
+and have a look at its examples [here](https://pypi.org/project/ollama/).
+The Python API closely match the [HTTP REST API] that we have been using so far.
+
+[HTTP REST API]: https://github.com/ollama/ollama/blob/main/docs/api.md
+
 The `ollama` package provides a `Client` class that you can use to interact 
-with the server. For example:
+with the server. Configure it 
 
 ```python
 >>> import ollama
 >>> OLLAMA = "http://localhost:11434"
 >>> client = ollama.Client(OLLAMA)
->>> response = generate("mistral", "Are you listening?")
->>> response
-{'model': 'mistral', 'created_at': '2024-04-09T13:13:03.235957001Z', 'response': " Yes, I am designed to listen and respond. How may I assist you today?\n\nHere's a little joke for you: Why don't scientists trust atoms? Because they make up everything! Is that funny? Let me know if you have any other questions or topics you'd like to discuss. 😊", 'done': True, 'context': [733, 16289, 28793, 28705, 4867, 368, 9857, 28804, 733, 28748, 16289, 28793, 5592, 28725, 315, 837, 5682, 298, 7105, 304, 9421, 28723, 1602, 993, 315, 6031, 368, 3154, 28804, 13, 13, 15423, 28742, 28713, 264, 1628, 13015, 354, 368, 28747, 4315, 949, 28742, 28707, 15067, 4893, 24221, 28804, 5518, 590, 1038, 582, 2905, 28808, 1691, 369, 10032, 28804, 3169, 528, 873, 513, 368, 506, 707, 799, 4224, 442, 13817, 368, 28742, 28715, 737, 298, 3342, 28723, 28705, 30464], 'total_duration': 6448111445, 'load_duration': 2767842, 'prompt_eval_duration': 127905000, 'eval_count': 67, 'eval_duration': 6316439000}
->>> print(response["response"])
- Yes, I am designed to listen and respond. How may I assist you today?
-
-Here's a little joke for you: Why don't scientists trust atoms? Because they make up everything! Is that funny? Let me know if you have any other questions or topics you'd like to discuss. 😊
+>>> response = client.generate(model="mistral", prompt="Are you listening?", stream=True)
+>>> for item in response:
+...     print(item)
+... 
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:25.680580534Z', 'response': ' Yes', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:25.799762718Z', 'response': ',', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:25.900719162Z', 'response': ' I', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.001831592Z', 'response': ' am', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.102831378Z', 'response': ' designed', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.213537806Z', 'response': ' to', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.316528486Z', 'response': ' listen', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.419662332Z', 'response': ' and', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.523196232Z', 'response': ' process', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.645587884Z', 'response': ' text', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.746636995Z', 'response': '-', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.846603128Z', 'response': 'based', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:26.946918818Z', 'response': ' information', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.047300774Z', 'response': '.', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.159380488Z', 'response': ' However', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.262964302Z', 'response': ',', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.363336479Z', 'response': ' please', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.463975695Z', 'response': ' note', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.565530467Z', 'response': ' that', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.667000436Z', 'response': ' I', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.769670818Z', 'response': ' don', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.892389686Z', 'response': "'", 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:27.993936349Z', 'response': 't', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.094892319Z', 'response': ' have', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.215311985Z', 'response': ' the', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.317437962Z', 'response': ' ability', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.419479906Z', 'response': ' to', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.522863067Z', 'response': ' understand', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.644491146Z', 'response': ' or', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.745132462Z', 'response': ' respond', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.847172647Z', 'response': ' to', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:28.97008162Z', 'response': ' spoken', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.072910074Z', 'response': ' language', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.18548044Z', 'response': ' as', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.287616003Z', 'response': ' I', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.410997067Z', 'response': ' don', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.511360904Z', 'response': "'", 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.612428737Z', 'response': 't', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.713706766Z', 'response': ' possess', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.815131374Z', 'response': ' a', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:29.91828318Z', 'response': ' voice', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.023054501Z', 'response': ' or', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.143906908Z', 'response': ' the', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.245337817Z', 'response': ' capability', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.345974355Z', 'response': ' to', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.447156139Z', 'response': ' hear', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.549265371Z', 'response': ' sounds', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.651445618Z', 'response': '.', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.774632498Z', 'response': ' I', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.876239614Z', 'response': ' can', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:30.977270134Z', 'response': ' only', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.078862844Z', 'response': ' process', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.181845616Z', 'response': ' and', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.285042327Z', 'response': ' generate', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.390980219Z', 'response': ' text', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.493757598Z', 'response': '.', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.597075405Z', 'response': ' How', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.701150505Z', 'response': ' may', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.806059601Z', 'response': ' I', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:31.918584029Z', 'response': ' assist', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.022588861Z', 'response': ' you', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.144995742Z', 'response': ' with', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.246713325Z', 'response': ' a', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.349905342Z', 'response': ' specific', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.452706846Z', 'response': ' query', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.576903921Z', 'response': ' or', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.678284353Z', 'response': ' task', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.780471543Z', 'response': '?', 'done': False}
+{'model': 'mistral', 'created_at': '2024-04-09T13:23:32.883449836Z', 'response': '', 'done': True, 'context': [733, 16289, 28793, 28705, 4867, 368, 9857, 28804, 733, 28748, 16289, 28793, 5592, 28725, 315, 837, 5682, 298, 7105, 304, 1759, 2245, 28733, 5527, 1871, 28723, 2993, 28725, 4665, 5039, 369, 315, 949, 28742, 28707, 506, 272, 5537, 298, 2380, 442, 9421, 298, 14382, 3842, 390, 315, 949, 28742, 28707, 14612, 264, 3441, 442, 272, 21368, 298, 3934, 7258, 28723, 315, 541, 865, 1759, 304, 8270, 2245, 28723, 1602, 993, 315, 6031, 368, 395, 264, 2948, 5709, 442, 3638, 28804], 'total_duration': 7738210780, 'load_duration': 310027, 'prompt_eval_count': 8, 'prompt_eval_duration': 534697000, 'eval_count': 69, 'eval_duration': 7202823000}
 ```
 
+Alternatively, if you are only interested in the reply text:
+
+```pycon
+>>> response = client.generate(model="mistral", prompt="Are you listening?", stream=True)
+>>> print("".join(item["response"] for item in response))
+ Yes, I am designed to listen and respond. How may I assist you today?
+
+Regarding your question about "Are you listening?", it's an important aspect of communication, as it helps ensure that both parties are engaged and focused on the conversation. In my case, as a text-based AI language model, I don't have the ability to listen in the same way humans do. However, I am programmed to process and understand text input, so feel free to type in your queries or requests, and I will do my best to provide accurate and helpful responses. Let me know if there's a specific topic you'd like to discuss or if you have any other questions!
+```
 
 ## Python Tutor
 
