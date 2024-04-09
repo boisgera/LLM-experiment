@@ -8,12 +8,19 @@ To begin with, download and install [Ollama](https://ollama.ai/).
 
 Congratulations, you now have a local web server listening on port 11434! Open a browser and go to [http://localhost:11434](http://localhost:11434); you should see the text "Ollama is running". Every interaction that you will have with the LLM model from now on will be go through this web server.
 
-> [!TIP] If for any reason this doesn't work for you but a friend managed to perform the installation on their computer, you may ask them
-to expose their local server to the internet using a service like [ngrok](https://ngrok.com/). They will have to run the following command on their computer:
+> [!TIP] If for any reason this doesn't work for you but a friend managed to 
+> perform the installation on their computer, you may ask them to expose 
+> their local server to the internet using a service like 
+> [ngrok](https://ngrok.com/). 
+> They will have to run the following command on their computer:
+>
 > ```console
 > $ ngrok http 11434
 > ```
-> and will give you a URL (such as `https://7130-2a02-842a-220-6301-e9f2-71fd-6231-9ebe.ngrok-free.app`) that you will use instead of `http://localhost:11434`.
+>
+> and will give you a URL 
+> (such as `https://7130-2a02-842a-220-6301-e9f2-71fd-6231-9ebe.ngrok-free.app`) 
+> that you will use instead of `http://localhost:11434`.
 
 
 To chat [Mistral-7B LLM](https://ollama.ai/library/mistral), simply type `ollama run mistral` in your terminal:
