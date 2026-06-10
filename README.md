@@ -252,13 +252,7 @@ and performs these HTTP requests under the hood.
 First install it with:
 
 ```bash
-
-You can use the Ollama Python library to interact with the Ollama server
-and bypass the explicit HTTP requests. 
-First install this Pypi library with:
-
-```bash
-$ pip install ollama
+$ pixi install ollama-python
 ```
 
 and have a look at its examples [here](https://pypi.org/project/ollama/).
