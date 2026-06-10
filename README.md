@@ -168,8 +168,10 @@ I'm sorry, I do not have the ability to remember names. I don't have a memory or
 
 We can fix this by using a different endpoint, `api/chat` and submit the conversation history with each request.
 
-We now have to provide the context, which is a list of message,
-dictionaries with two keys: `role` and `content`. The value of `role` is either `"user"` or `"assistant"`. The value of `content` is the text of the message (yours or the answer of Mistral-7B).
+We now have to provide the context, which is a list of messages,
+dictionaries with two keys: `role` and `content`. T
+he value of `role` is either `"user"` or `"assistant"`. 
+The value of `content` is the text of the message (yours or the answer of Mistral-7B).
 
 For example start with the following conversation:
 
@@ -357,7 +359,7 @@ Regarding your question about "Are you listening?", it's an important aspect of 
 ## Python Tutor
 
 Make your own Python tutor with a graphical interface using [marimo](https://marimo.io/).
-You may begin with the following system prompt:
+You may use the following system prompt:
 
 ```python
 SYSTEM = """\
