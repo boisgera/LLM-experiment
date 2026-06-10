@@ -52,9 +52,6 @@ Great to hear that! Is there anything specific you would like me to help with or
 > success
 > ```
 
-
-
-
 ## Talk to Ollama with Python
 
 Let `OLLAMA` be the URL of your Ollama server:
@@ -66,7 +63,7 @@ Let `OLLAMA` be the URL of your Ollama server:
 To check that the Ollama server is running, 
 you don't actually need a web browser; you can actually use the Python `requests` library to get the same result:
 
-```python
+```pycon
 >>> import requests
 >>> response = requests.get(OLLAMA)
 >>> print(response.text)
