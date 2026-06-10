@@ -365,7 +365,7 @@ Regarding your question about "Are you listening?", it's an important aspect of 
 
 ## Python Tutor
 
-Make your own Python tutor with a graphical interface using [flet](https://flet.dev/).
+Make your own Python tutor with a graphical interface using [marimo](https://marimo.io/).
 You may begin with the following system prompt:
 
 ```python
@@ -383,45 +383,6 @@ Your answers are formatted in the Markdown language, especially code samples.
 messages = [{"role": "system", "content": SYSTEM}]
 ```
 
-You can also use the following flet code template to get started:
+You can also use the [marimo chat UI element](https://docs.marimo.io/api/inputs/chat/):
 
-```python
-def main(page: ft.Page):
-
-    def send(event):
-        messages.append({"role": "user", "content": question.value})
-        send_button.disabled = True
-        ...
-        question.value = ""
-        send_button.disabled = False
-        page.update()
-
-    question = ft.TextField(
-        label="Your question",
-        multiline=True,
-        min_lines=5,
-    )
-
-    answer_display = ft.Markdown(
-        "",
-        selectable=True,
-    )
-
-    send_button = ft.ElevatedButton(
-        "Ask your question",
-        icon="send",
-        on_click=send,
-    )
-
-    page.add(
-        ft.Column(
-            controls=[
-                question,
-                send_button,
-                answer_display
-            ]
-        )
-    )
-
-ft.app(target=main)
-```
+![marimo chat](images/char.png)
