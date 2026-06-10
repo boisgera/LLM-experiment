@@ -385,4 +385,4 @@ messages = [{"role": "system", "content": SYSTEM}]
 
 You can also use the [marimo chat UI element](https://docs.marimo.io/api/inputs/chat/):
 
-![marimo chat](images/char.png)
+![marimo chat](images/chat.png)
